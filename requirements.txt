@@ -1,0 +1,9 @@
+langchain==0.1.16
+langchain-community==0.0.34
+langchain-cohere==0.1.4
+faiss-cpu==1.8.0
+streamlit==1.33.0
+pandas==2.2.2
+python-dotenv==1.0.1
+tiktoken==0.6.0
+cohere==5.5.8

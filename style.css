@@ -1,0 +1,456 @@
+/* Medical RAG Assistant - Professional Medical Theme */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Root Variables - Medical Color Palette */
+:root {
+    --primary-red: #DC3545;
+    --primary-red-dark: #B02A37;
+    --primary-blue: #0077B6;
+    --primary-blue-light: #00A8E8;
+    --accent-teal: #17A2B8;
+    --success-green: #28A745;
+    --background-light: #F8F9FA;
+    --background-dark: #1A1D23;
+    --card-bg: #FFFFFF;
+    --text-primary: #212529;
+    --text-secondary: #6C757D;
+    --border-color: #DEE2E6;
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+    --gradient-medical: linear-gradient(135deg, #DC3545 0%, #0077B6 100%);
+    --gradient-header: linear-gradient(135deg, #1A1D23 0%, #2D3748 100%);
+}
+
+/* Global Styles */
+.stApp {
+    background: #f8f9fa !important;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden !important;
+}
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
+/* Prevent horizontal scroll */
+html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+}
+
+/* Main Container - Remove padding for full-page hero */
+.main .block-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* Custom Header Styling - only for Streamlit native h1 */
+.stMarkdown h1:not([style]) {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 2.5rem !important;
+    background: var(--gradient-medical);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+    padding: 1rem 0;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Subtitle/Description - only for chat area */
+.stChatMessage .stMarkdown p {
+    font-size: 1rem;
+    color: #495057 !important;
+    line-height: 1.6;
+}
+
+/* Hero Section - preserve inline styles */
+.stMarkdown {
+    background: transparent;
+}
+
+/* Allow inline styles to work */
+.stMarkdown div, .stMarkdown p, .stMarkdown span, .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+}
+
+/* Success Message Styling */
+.stSuccess {
+    background: linear-gradient(135deg, #D4EDDA 0%, #C3E6CB 100%) !important;
+    border: none !important;
+    border-left: 4px solid var(--success-green) !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    box-shadow: var(--shadow-sm);
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+/* Spinner Styling */
+.stSpinner > div {
+    border-color: var(--primary-red) transparent transparent transparent !important;
+}
+
+/* Spinner container */
+.stSpinner {
+    max-width: 800px !important;
+    margin: 0 auto !important;
+}
+
+/* Chat Input Container */
+.stChatInput {
+    max-width: 800px !important;
+    margin: 1rem auto !important;
+    border-radius: 25px !important;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(220, 53, 69, 0.15) !important;
+}
+
+.stChatInput > div {
+    background: #ffffff !important;
+    border: 2px solid #DC3545 !important;
+    border-radius: 25px !important;
+    transition: all 0.3s ease;
+}
+
+.stChatInput > div:focus-within {
+    border-color: #B02A37 !important;
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15) !important;
+}
+
+.stChatInput input {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1rem !important;
+    padding: 1rem 1.5rem !important;
+    color: #212529 !important;
+}
+
+.stChatInput textarea {
+    color: #212529 !important;
+}
+
+.stChatInput input::placeholder {
+    color: #6C757D !important;
+}
+
+/* Text Input Styling */
+.stTextInput > div > div > input {
+    border: 2px solid #DC3545 !important;
+    border-radius: 25px !important;
+    padding: 1rem 1.5rem !important;
+    font-size: 1rem !important;
+    color: #212529 !important;
+    background: white !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.1) !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #B02A37 !important;
+    box-shadow: 0 0 0 4px rgba(220, 53, 69, 0.15) !important;
+}
+
+.stTextInput > div > div > input::placeholder {
+    color: #6C757D !important;
+}
+
+/* Primary Button Styling */
+.stButton > button[kind="primary"] {
+    background: linear-gradient(135deg, #DC3545, #B02A37) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+.stButton > button[kind="primary"]:hover {
+    box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Chat Messages Container */
+.stChatMessage {
+    background: var(--card-bg) !important;
+    border-radius: 16px !important;
+    padding: 1.25rem !important;
+    margin: 0.75rem auto !important;
+    max-width: 800px !important;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stChatMessage:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* User Message */
+.stChatMessage[data-testid="user-message"] {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%) !important;
+    border-left: 4px solid var(--primary-red);
+}
+
+/* Assistant Message */
+.stChatMessage[data-testid="assistant-message"] {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%) !important;
+    border-left: 4px solid var(--primary-blue);
+}
+
+/* Avatar Styling */
+.stChatMessage .stAvatar {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 12px !important;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Expander Styling - Evidence Section */
+.streamlit-expanderHeader {
+    background: linear-gradient(135deg, #FFF5F5 0%, #FED7D7 100%) !important;
+    border-radius: 12px !important;
+    border: 1px solid #FEB2B2 !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    color: var(--primary-red-dark) !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.3s ease;
+}
+
+.streamlit-expanderHeader:hover {
+    background: linear-gradient(135deg, #FED7D7 0%, #FEB2B2 100%) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+.streamlit-expanderContent {
+    background: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+    border-top: none !important;
+    border-radius: 0 0 12px 12px !important;
+    padding: 1rem !important;
+}
+
+/* Caption Styling - Source Info */
+.stCaption {
+    background: linear-gradient(135deg, #E8F4FD 0%, #D1E9FC 100%);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-blue);
+    font-weight: 500;
+    margin: 0.5rem 0;
+    color: #212529 !important;
+}
+
+/* Expander content text */
+.streamlit-expanderContent p,
+.streamlit-expanderContent span,
+.streamlit-expanderContent div {
+    color: #212529 !important;
+}
+
+/* Markdown Text in Chat */
+.stChatMessage .stMarkdown {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #212529 !important;
+}
+
+.stChatMessage .stMarkdown p {
+    color: #212529 !important;
+}
+
+.stChatMessage .stMarkdown li {
+    color: #212529 !important;
+}
+
+.stChatMessage .stMarkdown strong {
+    color: #1A1D23 !important;
+}
+
+/* Code blocks if any */
+.stChatMessage code {
+    background: #F1F5F9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #212529 !important;
+}
+
+/* Sidebar Styling (if used later) */
+.css-1d391kg {
+    background: var(--gradient-header) !important;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #F1F5F9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-red) 0%, var(--primary-blue) 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-red-dark);
+}
+
+/* Loading Animation */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.stSpinner {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Button Styling (for future use) */
+.stButton > button {
+    background: var(--gradient-medical) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 0.75rem 2rem !important;
+    font-weight: 600 !important;
+    font-family: 'Inter', sans-serif !important;
+    transition: all 0.3s ease !important;
+    box-shadow: var(--shadow-md);
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Info boxes */
+.stInfo {
+    background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%) !important;
+    border: none !important;
+    border-left: 4px solid var(--primary-blue) !important;
+    border-radius: 8px !important;
+}
+
+/* Warning boxes */
+.stWarning {
+    background: linear-gradient(135deg, #FFF3CD 0%, #FFE69C 100%) !important;
+    border: none !important;
+    border-left: 4px solid #FFC107 !important;
+    border-radius: 8px !important;
+}
+
+/* Error boxes */
+.stError {
+    background: linear-gradient(135deg, #F8D7DA 0%, #F5C6CB 100%) !important;
+    border: none !important;
+    border-left: 4px solid var(--primary-red) !important;
+    border-radius: 8px !important;
+}
+
+/* Divider */
+hr {
+    border: none;
+    height: 2px;
+    background: var(--gradient-medical);
+    border-radius: 2px;
+    margin: 1.5rem 0;
+}
+
+/* Animation for new messages */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stChatMessage {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Medical Badge/Tag Styling */
+.medical-tag {
+    display: inline-block;
+    background: var(--gradient-medical);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 0.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main .block-container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.75rem !important;
+    }
+    
+    .stChatMessage {
+        padding: 1rem !important;
+    }
+}
+
+/* Chat text dark colors */
+.stChatMessage p, .stChatMessage span, .stChatMessage li {
+    color: #212529 !important;
+}
+
+/* Input labels */
+.stTextInput label,
+.stSelectbox label,
+.stTextArea label {
+    color: #212529 !important;
+}
+
+/* Widget text */
+[data-testid="stWidgetLabel"] {
+    color: #212529 !important;
+}
+
+/* Chat message content */
+[data-testid="stChatMessageContent"] {
+    color: #212529 !important;
+}
+
+[data-testid="stChatMessageContent"] p {
+    color: #212529 !important;
+}
+
+/* Nav links should be gray, not blue */
+nav a {
+    color: #4A5568 !important;
+}
+
+/* Regular links */
+.stChatMessage a {
+    color: #0077B6 !important;
+}
+
+.stChatMessage a:hover {
+    color: #005A8C !important;
+}
