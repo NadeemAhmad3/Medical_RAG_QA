@@ -365,7 +365,7 @@ Medical_RAG_QA/
 ├── 📄 app.py                    # Streamlit application (Main UI)
 ├── 📄 style.css                 # Custom CSS styling
 ├── 📄 requirements.txt          # Python dependencies
-├── 📄 .env                      # Environment variables (API keys)
+├── 📄 .env                      # Environment variables (⚠️ NOT INCLUDED - Create manually)
 ├── 📄 README.md                 # Project documentation
 │
 ├── 📁 src/                      # Source code modules
@@ -378,12 +378,19 @@ Medical_RAG_QA/
 ├── 📁 dataset/                  # Data directory
 │   └── 📄 mtsamples.csv        # Medical transcriptions dataset
 │
-└── 📁 vectorstore/              # Vector database storage
+└── 📁 vectorstore/              # Vector database storage (⚠️ NOT INCLUDED - Generate via ingest.py)
     └── 📁 faiss_index/         # FAISS index files
         ├── index.faiss         # Vector index
         ├── index.pkl           # Index metadata
         └── docstore.pkl        # Parent documents
 ```
+
+### ⚠️ Important Notes on Repository Contents
+
+| File/Folder | Included in Repo | Reason | Action Required |
+|-------------|------------------|--------|------------------|
+| `.env` | ❌ No | Security - Contains API keys | Create manually (see Step 4) |
+| `vectorstore/` | ❌ No | Size - ~270MB exceeds GitHub limit | Generate via `python -m src.ingest` (see Step 5) |
 
 ---
 
@@ -393,6 +400,16 @@ Medical_RAG_QA/
 
 - Python 3.10 or higher
 - Cohere API Key ([Get one here](https://dashboard.cohere.com/api-keys))
+- ~500MB disk space (for vector database generation)
+- Stable internet connection (for API calls during ingestion)
+
+### ⚠️ Before You Start
+
+This repository does **NOT** include:
+1. **`.env` file** - Contains sensitive API keys (security reasons)
+2. **`vectorstore/` folder** - ~270MB vector database (exceeds GitHub limit)
+
+You will need to create these locally by following Steps 4 and 5 below.
 
 ### Step 1: Clone the Repository
 
@@ -421,26 +438,47 @@ pip install -r requirements.txt
 
 ### Step 4: Configure Environment Variables
 
+> ⚠️ **IMPORTANT:** The `.env` file is **NOT included** in this repository for security reasons. You must create it manually.
+
 Create a `.env` file in the root directory:
 
 ```env
 COHERE_API_KEY=your_cohere_api_key_here
 ```
 
-### Step 5: Ingest Data (First-time setup)
+**How to get your Cohere API Key:**
+1. Go to [Cohere Dashboard](https://dashboard.cohere.com/api-keys)
+2. Sign up or log in to your account
+3. Navigate to API Keys section
+4. Create a new API key and copy it
+5. Paste it in your `.env` file
+
+### Step 5: Generate Vector Database (First-time setup)
+
+> ⚠️ **IMPORTANT:** The `vectorstore/` folder is **NOT included** in this repository because it's ~270MB in size (exceeds GitHub's file size limit). You must generate it locally by running the ingestion script.
 
 ```bash
 python -m src.ingest
 ```
 
 This will:
-- Load 4,000 medical transcriptions
-- Create parent-child document splits
-- Generate embeddings using Cohere
-- Build FAISS vector index
-- Save everything to `vectorstore/`
+- Load 4,000 medical transcriptions from `dataset/mtsamples.csv`
+- Create parent-child document splits (Parent: 2000 chars, Child: 400 chars)
+- Generate embeddings using Cohere's `embed-english-v3.0` model
+- Build FAISS vector index for fast similarity search
+- Save the vector database to `vectorstore/faiss_index/`
+- Save parent documents to `vectorstore/faiss_index/docstore.pkl`
 
-⏱️ **Note:** Initial ingestion takes ~15-20 minutes due to API rate limits.
+⏱️ **Note:** Initial ingestion takes ~15-20 minutes due to API rate limits (100 calls/min on trial).
+
+**Expected Output:**
+```
+Loading Data...
+Processing batch 1/400 (10 docs)...
+Processing batch 2/400 (10 docs)...
+...
+Database saved. 4000 parent documents processed.
+```
 
 ### Step 6: Run the Application
 
